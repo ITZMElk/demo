@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus | Futuristic Web Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    :root {
+      --primary: #00f0ff;
+      --primary-dark: #00a8b5;
+      --secondary: #7b2dff;
+      --dark: #0a0a1a;
+      --darker: #050511;
+    }
+    
+    body {
+      background: radial-gradient(ellipse at top, var(--darker), var(--dark));
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    /* Premium Navbar */
+    .navbar {
+      background: rgba(10, 10, 26, 0.8) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+      padding: 20px 0;
+      transition: all 0.4s ease;
+    }
+    
+    .navbar.scrolled {
+      padding: 10px 0;
+      background: rgba(5, 5, 17, 0.95) !important;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-link {
+      position: relative;
+      margin: 0 10px;
+      font-weight: 500;
+      color: #fff !important;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 150px 20px 120px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.05) 0%, transparent 70%);
+      animation: pulse 15s infinite linear;
+      z-index: -1;
+    }
+    
+    @keyframes pulse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #fff, var(--primary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    
+    /* Buttons */
+    .btn-custom {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #000;
+      border: none;
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 50px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3);
+      z-index: 1;
+    }
+    
+    .btn-custom::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+      border-radius: 50px;
+    }
+    
+    .btn-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 240, 255, 0.4);
+    }
+    
+    .btn-custom:hover::before {
+      opacity: 1;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 100px 20px;
+      position: relative;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .section-title p {
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .feature-card {
+      background: rgba(30, 30, 46, 0.5);
+      border: 1px solid rgba(0, 240, 255, 0.1);
+      border-radius: 15px;
+      padding: 40px 30px;
+      height: 100%;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.05) 0%, transparent 70%);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 240, 255, 0.1);
+      border-color: rgba(0, 240, 255, 0.3);
+    }
+    
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(123, 45, 255, 0.1));
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      font-size: 30px;
+      color: var(--primary);
+    }
+    
+    .feature-card h4 {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+    
+    .feature-card p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0;
+    }
+    
+    /* Footer */
+    .footer {
+      background: rgba(5, 5, 17, 0.95);
+      padding: 60px 0 30px;
+      color: rgba(255, 255, 255, 0.6);
+      position: relative;
+      border-top: 1px solid rgba(0, 240, 255, 0.1);
+    }
+    
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+    
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .footer-links h5 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      margin-right: 10px;
+      color: rgba(255, 255, 255, 0.6);
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+      color: #000;
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 30px;
+      margin-top: 50px;
+      text-align: center;
+    }
+    
+    /* Animations */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        padding: 120px 20px 80px;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Nexus</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn btn-custom ms-lg-3">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="animate__animated animate__fadeInDown">Build The Future With Us</h1>
+      <p class="animate__animated animate__fadeIn animate__delay-1s">We create cutting-edge digital experiences that push boundaries and deliver exceptional results for forward-thinking businesses.</p>
+      <a href="#features" class="btn btn-custom mt-4 animate__animated animate__fadeInUp animate__delay-1s">Explore Solutions</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-title animate__animated animate__fadeIn">
+        <h2>Premium Features</h2>
+        <p>Designed to give your business the competitive edge in today's digital landscape</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h4>Lightning Fast</h4>
+            <p>Optimized for speed with cutting-edge performance technologies that ensure your site loads in milliseconds.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h4>Fully Responsive</h4>
+            <p>Flawless experience across all devices with our mobile-first approach and adaptive design principles.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-2s">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4>Enterprise Security</h4>
+            <p>Military-grade security protocols to protect your data and your customers' information.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>SEO Optimized</h4>
+            <p>Built with search engine visibility in mind to help you rank higher and attract more organic traffic.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h4>Easy to Manage</h4>
+            <p>Intuitive content management system that puts you in control without technical knowledge.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-2s">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h4>Scalable Architecture</h4>
+            <p>Future-proof solutions that grow with your business, handling increased traffic effortlessly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <div class="footer-logo">Nexus</div>
+          <p>Building the future of digital experiences with cutting-edge technology and innovative design.</p>
+          <div class="social-links mt-4">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+          <div class="footer-links">
+            <h5>Company</h5>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Case Studies</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+          <div class="footer-links">
+            <h5>Products</h5>
+            <ul>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">App Development</a></li>
+              <li><a href="#">UI/UX Design</a></li>
+              <li><a href="#">Digital Marketing</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="footer-links">
+            <h5>Contact Us</h5>
+            <ul>
+              <li><i class="fas fa-map-marker-alt me-2"></i> 123 Future Street, Tech City</li>
+              <li><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
+              <li><i class="fas fa-envelope me-2"></i> hello@nexus.com</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Nexus Technologies. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Animation on scroll
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.animate__animated');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          const animation = element.getAttribute('data-animation');
+          element.classList.add(animation);
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
+</body>
+</html>
